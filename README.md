@@ -8,6 +8,9 @@ iCloud Notes desktop app for Windows. Loads [icloud.com/notes](https://www.iclou
 
 <img width="1282" height="832" alt="{AF701B39-BCA5-4E4B-88FA-26BFB678E257}" src="https://github.com/user-attachments/assets/38efb33b-0dfa-4502-9891-0ab7d6cf37bf" />
 
+## Known Issues
+Performance is poor (just like Apple's browser implementation, because this uses it) with lots (>10k+) of notes.
+
 ## Features
 
 - **System tray** - close hides to tray; left-click toggles the window
@@ -32,9 +35,11 @@ This app is **not affiliated with Apple**. It is an unofficial desktop wrapper a
 
 ## Development
 
-Requires Rust (MSVC), WebView2, and Bun. Sibling crate [`tauri-tray-base`](https://github.com/taylorivanoff/tauri-tray-base) must sit at `../../tauri-tray-base` relative to this repo (i.e. `Projects/tauri-tray-base`).
+Requires Rust (MSVC), WebView2, and Bun. From `src-tauri`, Cargo expects [`tauri-icloud-base`](https://github.com/taylorivanoff/tauri-icloud-base) at `../../../tauri-icloud-base`; that crate in turn needs [`tauri-tray-base`](https://github.com/taylorivanoff/tauri-tray-base) beside it.
 
 ```bash
+git clone https://github.com/taylorivanoff/tauri-icloud-base ../../tauri-icloud-base
+git clone https://github.com/taylorivanoff/tauri-tray-base ../../tauri-tray-base
 bun install
 bun run icon          # regenerate icons from icon.png
 bun run dev
@@ -43,6 +48,10 @@ bun run dev
 ### Release build
 
 ```bash
+git clone https://github.com/taylorivanoff/tauri-icloud-base ../../tauri-icloud-base
+git clone https://github.com/taylorivanoff/tauri-tray-base ../../tauri-tray-base
+bun install
+bun run icon          # regenerate icons from icon.png
 bun run release
 ```
 
